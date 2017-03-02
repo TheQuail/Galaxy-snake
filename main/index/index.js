@@ -13,10 +13,10 @@ render();
 function init() {
     container = document.createElement('div');
     document.body.appendChild(container);
-    camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 1700;
-    camera.position.x = 1500;
-    camera.position.y = 1500;
+    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
+    camera.position.z = 2000;
+    camera.position.x = 2000;
+    camera.position.y = 2000;
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xffffff, 1, 10000);
     var geometry = new THREE.BoxGeometry(100, 100, 100);
@@ -76,8 +76,8 @@ function render() {
     // camera.position.x += (mouseX - camera.position.x) * .05;
     // camera.position.y += (-mouseY - camera.position.y) * .05;
     camera.lookAt(scene.position);
-    group.rotation.x = rx;
-    group.rotation.y = ry;
-    group.rotation.z = rz;
+    group.rotation.x = 0;
+    group.rotation.y = 0;
+    group.rotation.z = 0;
     renderer.render(scene, camera);
 }
