@@ -14,7 +14,32 @@ function init() {
     geometry = new THREE.BoxGeometry(200, 200, 200);
     material = new THREE.MeshBasicMaterial({
         color: 0xff0000,
-        wireframe: true
+        wireframe: true,
+
+        map: null,
+
+        lightMap: null,
+        lightMapIntensity: 1.0,
+
+        aoMap: null,
+        aoMapIntensity: 1.0,
+
+        specularMap: null,
+
+        alphaMap: null,
+
+        envMap: null,
+        reflectivity: 10,
+        refractionRatio: 0.98,
+
+        wireframeLinewidth: 50,
+        wireframeLinecap: 'butt',
+        wireframeLinejoin: 'bevel',
+
+        skinning: false,
+        morphTargets: false,
+
+        lights: false
     });
 
     mesh = new THREE.Mesh(geometry, material);
@@ -32,8 +57,16 @@ function animate() {
     requestAnimationFrame(animate);
 
     mesh.rotation.x += 0.01;
-    mesh.rotation.y += 0.02;
+    mesh.rotation.y += 0.01;
 
+    renderer.render(scene, camera);
+
+}
+
+function curve() {
+
+    mesh.rotation.x += 1;
+    mesh.rotation.y += 2;
     renderer.render(scene, camera);
 
 }
