@@ -13,13 +13,13 @@ function createWindow() {
     // 创建一个浏览器窗口对象，并指定窗口的大小
     // 1024×768 合理的窗口大小
     mainWindow = new BrowserWindow({
-        width: 1920,
-        height: 1080,
+        width: 400,
+        height: 400,
         title: "Galaxy-snake"
     });
 
     // 通过浏览器窗口对象加载index.html文件，同时也是可以加载一个互联网地址的
-    mainWindow.loadURL('file://' + __dirname + '/main/index/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/index/index.html');
     // 打开程序的同时打开开发者工具
     mainWindow.openDevTools();
     // 监听浏览器窗口对象是否关闭，关闭之后直接将mainWindow指向空引用，也就是回收对象内存空间
