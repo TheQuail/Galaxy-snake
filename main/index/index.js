@@ -153,26 +153,7 @@ function render(target) {
     switch (positionstat) {
 
     }
-    // var time = Date.now() * 0.001;
-    // var rx = Math.sin(time * 0.7) * 0.5,
-    //     ry = Math.sin(time * 0.3) * 0.5,
-    //     rz = Math.sin(time * 0.2) * 0.5;
-    // camera.position.x -= 2;
-    // camera.position.z -= 2;
-    // camera.position.y += 100;
-<<<<<<< Updated upstream
     camera.lookAt(cameratarget);
-    // console.log(cameratarget);
-=======
     group.rotation.x += ( targetRotation - group.rotation.x ) * 0.05;
->>>>>>> Stashed changes
     renderer.render(scene, camera);
-}
-
-
-function change_camera() {
-    camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 2000;
-    camera.position.x = 2000;
-    camera.position.y = 2000;
 }
