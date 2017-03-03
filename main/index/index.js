@@ -47,16 +47,16 @@ function init() {
     scene.fog = new THREE.Fog(0xffffff, 1, 10000);
     var geometry = new THREE.BoxGeometry(100, 100, 100);
     group = new THREE.Group();
-    for (var k = 0; k < 10; k++) {
-        for (var j = 0; j < 10; j++) {
-            for (var i = 0; i < 10; i++) {
+    for (var k = 0; k < 11; k++) {
+        for (var j = 0; j < 11; j++) {
+            for (var i = 0; i < 11; i++) {
                 var mesh = new THREE.Mesh(geometry, new THREE.MeshBasicMaterial({
                     wireframe: true,
                     color: 0x0000FF
                 }));
-                mesh.position.x = 0.5 * 2000 - 100 * i;
-                mesh.position.y = 0.5 * 2000 - 100 * j;
-                mesh.position.z = 0.5 * 2000 - 100 * k;
+                mesh.position.x = 500 - 100 * i;
+                mesh.position.y = 500 - 100 * j;
+                mesh.position.z = 500 - 100 * k;
                 mesh.matrixAutoUpdate = false;
                 mesh.updateMatrix();
                 group.add(mesh);
@@ -154,6 +154,6 @@ function render(target) {
 
     }
     camera.lookAt(cameratarget);
-    group.rotation.x += ( targetRotation - group.rotation.x ) * 0.05;
+    group.rotation.y += ( targetRotation - group.rotation.y ) * 0.05;
     renderer.render(scene, camera);
 }
