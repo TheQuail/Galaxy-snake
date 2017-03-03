@@ -1,12 +1,10 @@
 var container;
 var camera, scene, renderer;
 var geometry, group;
-var mouseX = 0,
-    mouseY = 0;
-var mouseXOnMouseDown = 0;
-var targetRotation = 0,
-    targetRotationY = 0;
-var targetRotationOnMouseDown = 0;
+var mouseX = 0, mouseY = 0;
+var mouseXOnMouseDown = 0, mouseYOnMouseDown = 0;
+var targetRotationX = 0, targetRotationY = 0;
+var targetRotationXOnMouseDown = 0, targetRotationYOnMouseDown = 0;
 
 var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
@@ -71,7 +69,7 @@ function init() {
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.sortObjects = false;
     container.appendChild(renderer.domElement);
-    document.addEventListener('mousedown', onDocumentMouseDown, false);
+    // document.addEventListener('mousedown', onDocumentMouseDown, false);
     document.addEventListener('touchstart', onDocumentTouchStart, false);
     document.addEventListener('touchmove', onDocumentTouchMove, false);
     window.addEventListener('resize', onWindowResize, false);
@@ -85,29 +83,33 @@ function onWindowResize() {
     renderer.setSize(window.innerWidth, window.innerHeight);
 }
 
-function onDocumentMouseDown(event) {
-    event.preventDefault();
-    document.addEventListener('mousemove', onDocumentMouseMove, false);
-    document.addEventListener('mouseup', onDocumentMouseUp, false);
-    document.addEventListener('mouseout', onDocumentMouseOut, false);
-    mouseXOnMouseDown = event.clientX - windowHalfX;
-    targetRotationOnMouseDown = targetRotation;
-}
+// function onDocumentMouseDown(event) {
+//     event.preventDefault();
+//     document.addEventListener('mousemove', onDocumentMouseMove, false);
+//     document.addEventListener('mouseup', onDocumentMouseUp, false);
+//     document.addEventListener('mouseout', onDocumentMouseOut, false);
+//     mouseXOnMouseDown = event.clientX - windowHalfX;
+//     mouseYOnMouseDown = event.clientY - windowHalfY;
+//     targetRotationXOnMouseDown = targetRotationX;
+//     targetRotationYOnMouseDown = targetRotationY;
+// }
 
 function onDocumentMouseMove(event) {
     mouseX = event.clientX - windowHalfX;
-    targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02;
+    mouseY = event.clientY - windowHalfY;
+    targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.02;
+    targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.02;
 }
 
-function onDocumentMouseUp(event) {
-    document.removeEventListener('mousemove', onDocumentMouseMove, false);
-    document.removeEventListener('mouseup', onDocumentMouseUp, false);
-    document.removeEventListener('mouseout', onDocumentMouseOut, false);
-}
+// function onDocumentMouseUp(event) {
+//     document.removeEventListener('mousemove', onDocumentMouseMove, false);
+//     document.removeEventListener('mouseup', onDocumentMouseUp, false);
+//     document.removeEventListener('mouseout', onDocumentMouseOut, false);
+// }
 
 function onDocumentMouseOut(event) {
     document.removeEventListener('mousemove', onDocumentMouseMove, false);
-    document.removeEventListener('mouseup', onDocumentMouseUp, false);
+    // document.removeEventListener('mouseup', onDocumentMouseUp, false);
     document.removeEventListener('mouseout', onDocumentMouseOut, false);
 }
 
@@ -115,7 +117,9 @@ function onDocumentTouchStart(event) {
     if (event.touches.length === 1) {
         event.preventDefault();
         mouseXOnMouseDown = event.touches[0].pageX - windowHalfX;
-        targetRotationOnMouseDown = targetRotation;
+        mouseYOnMouseDown = event.touches[0].pageY - windowHalfY;
+        targetRotationXOnMouseDown = targetRotationX;
+        targetRotationYOnMouseDown = targetRotationY;
     }
 }
 
@@ -123,7 +127,9 @@ function onDocumentTouchMove(event) {
     if (event.touches.length === 1) {
         event.preventDefault();
         mouseX = event.touches[0].pageX - windowHalfX;
-        targetRotation = targetRotationOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05;
+        mouseY = event.touches[0].pageY - windowHalfY;
+        targetRotationX = targetRotationXOnMouseDown + (mouseX - mouseXOnMouseDown) * 0.05;
+        targetRotationY = targetRotationYOnMouseDown + (mouseY - mouseYOnMouseDown) * 0.05;
     }
 }
 
@@ -154,6 +160,7 @@ function render(target) {
 
     }
     camera.lookAt(cameratarget);
-    group.rotation.y += ( targetRotation - group.rotation.y ) * 0.05;
+    group.rotation.y += ( targetRotationX - group.rotation.y ) * 0.02;
+    group.rotation.x += ( targetRotationY - group.rotation.x ) * 0.02;
     renderer.render(scene, camera);
 }
