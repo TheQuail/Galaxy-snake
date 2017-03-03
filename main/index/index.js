@@ -7,19 +7,27 @@ var windowHalfX = window.innerWidth / 2;
 var windowHalfY = window.innerHeight / 2;
 /**
  * 标志着现在摄像机的位置
- * 0：左侧
- * 1：前方
- * 2：右侧
- * 3：后方
- * 4：上方
- * 5：下方
+ * 0：
+ * 1：
+ * 2：
+ * 3：
+ * 4：
+ * 5：
  * 6：
+ * 7：
+ * 8：
  */
 var positionstat = 0;
+var gui = new dat.GUI();
+
 document.addEventListener('mousemove', onDocumentMouseMove, false);
 init();
 animate();
 render();
+gui.add(camera.position, 'x', -2000, 2000);
+gui.add(camera.position, 'y', -2000, 2000);
+gui.add(camera.position, 'z', -2000, 2000);
+// gui.add(camera, 'bouncingSpeed', -2000, 0.5);
 
 function init() {
     container = document.createElement('div');
@@ -98,8 +106,8 @@ function render(target) {
     // var rx = Math.sin(time * 0.7) * 0.5,
     //     ry = Math.sin(time * 0.3) * 0.5,
     //     rz = Math.sin(time * 0.2) * 0.5;
-    camera.position.x -= 2;
-    camera.position.z -= 2;
+    // camera.position.x -= 2;
+    // camera.position.z -= 2;
     // camera.position.y += 100;
     camera.lookAt(scene.position);
     renderer.render(scene, camera);
