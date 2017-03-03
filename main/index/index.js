@@ -33,9 +33,9 @@ function init() {
     container = document.createElement('div');
     document.body.appendChild(container);
     camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 1, 10000);
-    camera.position.z = 2000;
-    camera.position.x = 2000;
-    camera.position.y = 2000;
+    camera.position.z = 500;
+    camera.position.x = 500;
+    camera.position.y = 500;
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xffffff, 1, 10000);
     var geometry = new THREE.BoxGeometry(100, 100, 100);
@@ -91,7 +91,13 @@ function animate() {
  * 0:目标镜头和当前镜头位置相同，不做改变
  * 1:转换到目标镜头
  */
+
+
 function render(target) {
+    var cameratarget = scene.position;
+    cameratarget.x = 500;
+    cameratarget.y = 500;
+    cameratarget.z = 500;
     if (positionstat == target) {
         return 0;
     }
@@ -105,7 +111,8 @@ function render(target) {
     // camera.position.x -= 2;
     // camera.position.z -= 2;
     // camera.position.y += 100;
-    camera.lookAt(scene.position);
+    camera.lookAt(cameratarget);
+    // console.log(cameratarget);
     renderer.render(scene, camera);
 <<<<<<< HEAD
 }
