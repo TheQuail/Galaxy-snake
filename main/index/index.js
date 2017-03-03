@@ -39,13 +39,8 @@ function init() {
     scene = new THREE.Scene();
     scene.fog = new THREE.Fog(0xffffff, 1, 10000);
     var geometry = new THREE.BoxGeometry(100, 100, 100);
-    var material = new THREE.MeshBasicMaterial({
-        wireframe: true,
-        color: 0x0000FF
-    });
     group = new THREE.Group();
 
-<<<<<<< HEAD
     for(var k = 0; k < 10; k++){
       for(var j = 0; j < 10; j++){
         for(var i = 0; i < 10; i++){
@@ -56,19 +51,6 @@ function init() {
           mesh.matrixAutoUpdate = false;
           mesh.updateMatrix();
           group.add(mesh);
-=======
-    for (var k = 0; k < 10; k++) {
-        for (var j = 0; j < 10; j++) {
-            for (var i = 0; i < 10; i++) {
-                var mesh = new THREE.Mesh(geometry, material);
-                mesh.position.x = 0.5 * 2000 - 100 * i;
-                mesh.position.y = 0.5 * 2000 - 100 * j;
-                mesh.position.z = 0.5 * 2000 - 100 * k;
-                mesh.matrixAutoUpdate = false;
-                mesh.updateMatrix();
-                group.add(mesh);
-            }
->>>>>>> origin/master
         }
     }
 
@@ -102,10 +84,10 @@ function animate() {
 }
 
 /**
- * 
- * 
- * @param {integer} target 
- * @returns 
+ *
+ *
+ * @param {integer} target
+ * @returns
  * 0:目标镜头和当前镜头位置相同，不做改变
  * 1:转换到目标镜头
  */
