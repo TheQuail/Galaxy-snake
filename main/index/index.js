@@ -75,7 +75,7 @@ function init() {
 
     scene.add(group);
     renderer = new THREE.WebGLRenderer();
-    renderer.setClearColor(0xffffff);
+    // renderer.setClearColor(0xffffff);
     renderer.setPixelRatio(window.devicePixelRatio);
     renderer.setSize(window.innerWidth, window.innerHeight);
     renderer.sortObjects = false;
@@ -155,7 +155,7 @@ function render(target) {
 
     }
     camera.lookAt(cameratarget);
-    
+
     renderer.render(scene, camera);
 }
 
